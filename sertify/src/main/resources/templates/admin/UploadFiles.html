@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="../../static/assets/general.css">
+    <title>Upload Files
+    </title>
+    <link href="../../static/admin/css/uploadFiles.css" rel="stylesheet">
+</head>
+<body>
+    <div class ="header">
+        <div class ="logo">
+            Sertify.
+        </div>
+        <img class="icon-profile" src="../../static/admin/assets/icon-profile0.svg">
+    </div>
+    <div class="main-content">
+        <div class="title"> 
+            Upload File to Start Generating Watermark       
+        </div>
+        <div class="form-container">
+            <form th:action="@{/sertify/upload/submit}" th:method="post">
+                <input type="file">
+                <a href="inputForm.html"><input type="submit" class="upload-btn"value="Verify">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

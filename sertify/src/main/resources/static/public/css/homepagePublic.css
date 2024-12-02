@@ -1,0 +1,23 @@
+.main-content{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+.title{
+    color:#65558F;
+    font-weight: 600;
+    font-size: 45px;
+    margin-top:0;
+}
+.greetings-desc{
+    font-family: 'Inter', 'Arial', 'Helvetica', 'Segoe UI', sans-serif;
+    color:black;
+    font-weight: 600;
+    margin-top:0;
+    margin-bottom:10px;
+}
+.homepage-hello{
+    width: 200px;
+    padding: 20px;
+}
