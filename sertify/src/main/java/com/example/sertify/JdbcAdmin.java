@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Repository
-public class JdbcDataRepo  implements dataRepo{
+public class JdbcAdmin  implements adminRepo{
 
     @Override
     public void insertHashtoDB(MultipartFile file) {

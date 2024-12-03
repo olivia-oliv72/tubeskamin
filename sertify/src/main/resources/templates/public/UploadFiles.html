@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="../../static/assets/general.css">
+    <link rel="stylesheet" href="/assets/general.css">
     <title>Upload Files
     </title>
-    <link href="../../static/public/css/uploadFiles.css" rel="stylesheet">
+    <link href="/public/css/uploadFiles.css" rel="stylesheet">
 </head>
 <body>
     <div class ="header">
         <div class ="logo">
             Sertify.
         </div>
-        <img class="icon-profile" src="../../static/public/assets/icon-profile0.svg">
+        <img class="icon-profile" src="public/assets/icon-profile0.svg">
     </div>
     <div class="main-content">
         <div class="title"> 
@@ -24,7 +24,7 @@
         </div>
         <div class="form-container">
             <form th:action="@{/sertify/upload/submit}" th:method="post">
-                <input type="file">
+                <input type="file" name="file">
                 <a href="verifResult.html"><input type="submit" class="upload-btn"value="Verify">
             </form>
         </div>

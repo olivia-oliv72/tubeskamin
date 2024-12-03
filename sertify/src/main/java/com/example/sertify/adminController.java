@@ -1,7 +1,5 @@
 package com.example.sertify;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/admin")
 public class adminController {
     @Autowired
-    private dataRepo repo;
+    private adminRepo repo;
 
     @GetMapping("/")
     public String homepage() {

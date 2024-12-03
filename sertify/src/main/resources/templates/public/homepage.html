@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="../../static/assets/general.css">
+    <link rel="stylesheet" href="/assets/general.css">
     <title>Homepage public
     </title>
-    <link href="../../static/public/css/homepagePublic.css" rel="stylesheet">
+    <link href="/public/css/homepagePublic.css" rel="stylesheet">
 </head>
 <body>
     <div class ="header">
         <div class ="logo">
             Sertify.
         </div>
-        <img class="icon-profile" src="../../static/public/assets/icon-profile0.svg">
+        <img class="icon-profile" src="/public/assets/icon-profile0.svg">
     </div>
     <div class="main-content">
         <div class="title"> 
@@ -22,8 +22,8 @@
         <div class="greetings-desc">
             Let’s verify your certificate’s integrity        
         </div>
-        <img class="homepage-hello" src="../../static/public/assets/homepage-hello0.svg">
-        <a href="UploadFiles.html"><button type="button" class="generate-btn">Let's verify</button>
+        <img class="homepage-hello" src="/public/assets/homepage-hello0.svg">
+        <a th:href="@{/sertify/upload}"><button type="button" class="generate-btn">Let's verify</button>
     </div>
 </body>
 </html>
