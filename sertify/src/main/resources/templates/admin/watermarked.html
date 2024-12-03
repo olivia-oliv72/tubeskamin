@@ -6,20 +6,21 @@
     <link rel="stylesheet" href="/static/assets/general.css">
     <title>Success!
     </title>
-    <link href="../../static/admin/css/watermarked.css" rel="stylesheet">
+    <link href="/admin/css/watermarked.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/general.css">
 </head>
 <body>
     <div class ="header">
         <div class ="logo">
             Sertify.
         </div>
-        <img class="icon-profile" src="/static/admin/assets/icon-profile0.svg">
+        <img class="icon-profile" src="/admin/assets/icon-profile0.svg">
     </div>
     <div class="main-content">
         <div class="title"> 
             Your watermark has been successfully <span>added</span>
         </div>
-        <a href="xx.html"><button type="button" class="upload-btn"><img src="../../static/admin/assets/icon-upload-file0.svg" class="icon-upload-file" >Download certificate</button></a>
+        <a th:href="@{/admin/download}"><button type="button" class="upload-btn"><img src="/admin/assets/icon-download-file0.svg" class="icon-upload-file" >Download certificate</button></a>
     </div>
 </body>
 </html>

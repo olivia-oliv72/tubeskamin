@@ -1,6 +1,8 @@
 package com.example.sertify;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface dataRepo {
 
-    void insertHashtoDB(String hashValue); 
+    void insertHashtoDB(MultipartFile file); 
 }

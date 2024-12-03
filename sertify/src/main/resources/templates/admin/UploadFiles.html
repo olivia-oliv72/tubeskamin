@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Upload Files</title>
     <link href="/admin/css/uploadFiles.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/general.css">
 </head>
 <body>
     <div class="header">
@@ -18,8 +19,8 @@
             Upload File to Start Generating Watermark       
         </div>
         <div class="form-container">
-            <form th:action="@{/sertify/upload/submit}" th:method="post" enctype="multipart/form-data">
-                <input type="file" name="file">
+            <form th:action="@{/admin/upload/submit}" th:method="post" enctype="multipart/form-data">
+                <input type="file" name="file" th:value="${file}">
                 <input type="submit" class="upload-btn" value="Verify">
             </form>
         </div>

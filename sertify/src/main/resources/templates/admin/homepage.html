@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="/admin/css/homepage.css">
+    <link rel="stylesheet" href="/assets/general.css">
     <title>Homepage public
     </title>
 </head>
@@ -21,8 +22,8 @@
         <div class="greetings-desc">
             Let's generate a watermark for the certificate to assure its integrity      
         </div>
-        <img class="homepage-hello" src="admin/assets/homepage-hello0.svg">
-        <a href="/upload">
+        <img class="homepage-hello" src="/admin/assets/homepage-hello0.svg">
+        <a th:href="@{/admin/upload}">
             <button type="button" class="generate-btn">
                 Let's generate
             </button>

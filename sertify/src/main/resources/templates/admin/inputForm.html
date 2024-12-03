@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="/admin/css/uploadFiles.css">
+    <link rel="stylesheet" href="/admin/css/inputForm.css">
+    <link rel="stylesheet" href="/assets/general.css">
     <title>Upload Files
     </title>
 </head>
@@ -19,7 +20,7 @@
             Input Text for Watermark      
         </div>
         <div class="form-container">
-            <form action="#" method="post">
+            <form th:action="@{/admin/inputForm/submit}" method="post">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter Name" required>
     
