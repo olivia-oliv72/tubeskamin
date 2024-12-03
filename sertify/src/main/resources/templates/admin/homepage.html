@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="../../static/assets/general.css">
+    <link rel="stylesheet" href="/admin/css/homepage.css">
     <title>Homepage public
     </title>
-    <link href="../../static/admin/homepage.css" rel="stylesheet">
 </head>
 <body>
     <div class ="header">
         <div class ="logo">
             Sertify.
         </div>
-        <img class="icon-profile" src="../../static/admin/assets/icon-profile0.svg">
+        <img class="icon-profile" src="/admin/assets/icon-profile0.svg">
     </div>
     <div class="main-content">
         <div class="title"> 
@@ -22,8 +21,12 @@
         <div class="greetings-desc">
             Let's generate a watermark for the certificate to assure its integrity      
         </div>
-        <img class="homepage-hello" src="../../static/admin/assets/homepage-hello0.svg">
-        <a href="UploadFiles.html"><button type="button" class="generate-btn">Let's generate</button>
+        <img class="homepage-hello" src="admin/assets/homepage-hello0.svg">
+        <a href="/upload">
+            <button type="button" class="generate-btn">
+                Let's generate
+            </button>
+        </a>
     </div>
 </body>
 </html>
