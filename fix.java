@@ -47,7 +47,7 @@ public class fix {
             System.out.println("Generated Hash: " + hash);
 
             // Path to the input image
-            String inputImagePath = "(Bulk 1) Seitu - Sertifikat.png";
+            String inputImagePath = "Salam FTIS.jpg";
             File inputFile = new File(inputImagePath);
             if (!inputFile.exists()) {
                 System.out.println("File not found: " + inputImagePath);
@@ -74,18 +74,28 @@ public class fix {
             System.out.println("panjang digest:" +digest.length());
     
             // Define the area where watermark will be embedded
-            int x_start = (int) Math.floor(width * 0.2);
-            int y_start = (int) Math.floor(height * 0.2);
-            int x_end = (int) Math.floor(width * 0.8);
-            int y_end = (int) Math.floor(height * 0.8);
-    
+            // int x_start = (int) Math.floor(width * 0.2);
+            // int y_start = (int) Math.floor(height * 0.2);
+            // int x_end = (int) Math.floor(width * 0.8);
+            // int y_end = (int) Math.floor(height * 0.8);
+            int x_center = (int) Math.floor(width * 0.5);
+            int y_center = (int) Math.floor(height * 0.5);
+
+            int x_start = x_center - (int) Math.floor(width * 0.3);
+            int x_end = x_center + (int) Math.floor(width * 0.3);
+
+            int y_start = y_center - (int) Math.floor(height * 0.3);
+            int y_end = y_center + (int) Math.floor(height * 0.3);
+
             // Calculate pixel distance for LSB
             int areaWidth = (int) Math.floor(width * 0.6);
             int areaHeight = (int) Math.floor(height * 0.6);
             int areaSize = areaWidth * areaHeight;
             System.out.println("luas=" + areaSize);
             System.out.println("x_akhir=" + x_end + " y_akhir" + y_end);
+            // BERUBAH
             int pixelSpacing = (int) ((areaSize / 256.0)); //Menghitung jarak antar pixel
+            // int pixelSpacing = Math.max(1, areaSize / digest.length());
 
             // int pixelSpacing = (int) Math.floor(Math.sqrt(areaSize / 256.0));
             //pixel = 256 --> 1
@@ -104,71 +114,96 @@ public class fix {
                     break;
                 }
             }
+            
+            // BERUBAH
+            // int digestIndex = 0;
+            // System.out.println("jarak= " + pixelSpacing);
+            // // Iterate through pixels in the defined area and embed hash
+            // int n = 1;
+
+            // //400  + 3975 = 4375
+            // //4375 - 1600 = 2775
+            // //2775 - 1600 = 1175
+            
+
+            // // 2 --> 40
+            // // jarak = 3
+            // // 2,5,8,11,14,17,20,23,26,29,32,35,38 (41%40=1)
+            // // 3,6,9
+
+            // //x1,y1 = 400, 282 --> Tandain
+            // //x2,y2 = (4375-1600=2775), 283 --> tidak ditandain
+            // //x3,y3 = (2775-1600=1175), 284 --> Tandain
+            
+            // int x = x_start;
+            // for (int y = y_start; y <= y_end; y++) {
+            //     for (x = x; x <= x_end; x+=pixelSpacing) {
+            //         if (x < x_start) {
+            //             x+=x_start;
+            //         }
+            //         // Get pixel color
+            //         int pixel = image.getRGB(x, y);
+            //         int r = (pixel >> 16) & 0xFF; // Red channel
+            //         int g = (pixel >> 8) & 0xFF;  // Green channel
+            //         int b = pixel & 0xFF;         // Blue channel
     
+            //         // maks hingga 256 kali
+            //         if (digestIndex < digest.length()) {
+            //             System.out.println("titik: "+x+" "+y + " Ke-"+n);
+            //             n+=1;
+            //             // Get the bit to embed from the hash
+            //             char hashBit = digest.charAt(digestIndex);
+            //             int value = (hashBit == '1') ? 1 : 0;
+    
+            //             // Modify the color channel (LSB embedding)
+            //             if (isOdd) {
+            //                 b = (b & 0xFE) | value;  // Modify blue if odd
+            //             } else {
+            //                 g = (g & 0xFE) | value;  // Modify green if even
+            //             }
+    
+            //             // Set the modified pixel back to the image
+            //             pixel = (r << 16) | (g << 8) | b;
+            //             image.setRGB(x, y, pixel);
+    
+            //             digestIndex++;  // Move to the next bit in the hash
+            //         } else {
+            //             // If digest is exhausted, stop embedding
+            //             break;
+            //         }
+
+            //             // masalah
+                    
+            //     }
+            //     if (x > x_end) {
+            //         x-= x_end;
+            //     }
+            // }
+
             int digestIndex = 0;
-            System.out.println("jarak= " + pixelSpacing);
-            // Iterate through pixels in the defined area and embed hash
-            int n = 1;
-
-            //400  + 3975 = 4375
-            //4375 - 1600 = 2775
-            //2775 - 1600 = 1175
+            for (int y = y_start; y <= y_end && digestIndex < digest.length(); y++) {
+                for (int x = x_start; x <= x_end && digestIndex < digest.length(); x++) {
+                    if ((x - x_start + (y - y_start) * areaWidth) % pixelSpacing == 0) {
+                        // Embedding logic here
+                        int pixel = image.getRGB(x, y);
+                        int r = (pixel >> 16) & 0xFF;
+                        int g = (pixel >> 8) & 0xFF;
+                        int b = pixel & 0xFF;
             
-
-            // 2 --> 40
-            // jarak = 3
-            // 2,5,8,11,14,17,20,23,26,29,32,35,38 (41%40=1)
-            // 3,6,9
-
-            //x1,y1 = 400, 282 --> Tandain
-            //x2,y2 = (4375-1600=2775), 283 --> tidak ditandain
-            //x3,y3 = (2775-1600=1175), 284 --> Tandain
-            
-            int x = x_start;
-            for (int y = y_start; y <= y_end; y++) {
-                for (x = x; x <= x_end; x+=pixelSpacing) {
-                    if (x < x_start) {
-                        x+=x_start;
-                    }
-                    // Get pixel color
-                    int pixel = image.getRGB(x, y);
-                    int r = (pixel >> 16) & 0xFF; // Red channel
-                    int g = (pixel >> 8) & 0xFF;  // Green channel
-                    int b = pixel & 0xFF;         // Blue channel
-    
-                    // maks hingga 256 kali
-                    if (digestIndex < digest.length()) {
-                        System.out.println("titik: "+x+" "+y + " Ke-"+n);
-                        n+=1;
-                        // Get the bit to embed from the hash
-                        char hashBit = digest.charAt(digestIndex);
+                        char hashBit = digest.charAt(digestIndex++);
                         int value = (hashBit == '1') ? 1 : 0;
-    
-                        // Modify the color channel (LSB embedding)
                         if (isOdd) {
-                            b = (b & 0xFE) | value;  // Modify blue if odd
+                            b = (b & 0xFE) | value;
                         } else {
-                            g = (g & 0xFE) | value;  // Modify green if even
+                            g = (g & 0xFE) | value;
                         }
-    
-                        // Set the modified pixel back to the image
+            
                         pixel = (r << 16) | (g << 8) | b;
                         image.setRGB(x, y, pixel);
-    
-                        digestIndex++;  // Move to the next bit in the hash
-                    } else {
-                        // If digest is exhausted, stop embedding
-                        break;
                     }
-
-                        // masalah
-                    
-                }
-                if (x > x_end) {
-                    x-= x_end;
                 }
             }
-            // Change every pixel to red for testing
+                        // Change every pixel to red for testing
 
             // // testing
             // for (int y = 0; y < height; y++) {
