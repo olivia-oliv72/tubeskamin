@@ -186,6 +186,7 @@ public class fix {
                     if ((x - x_start + (y - y_start) * areaWidth) % pixelSpacing == 0) {
                         // Embedding logic here
                         int pixel = image.getRGB(x, y);
+                        int a = (pixel >> 24) & 0xFF;  // Extract the alpha channel
                         int r = (pixel >> 16) & 0xFF;
                         int g = (pixel >> 8) & 0xFF;
                         int b = pixel & 0xFF;
@@ -198,11 +199,17 @@ public class fix {
                             g = (g & 0xFE) | value;
                         }
             
-                        pixel = (r << 16) | (g << 8) | b;
+                        pixel = (a << 24) | (r << 16) | (g << 8) | b;
                         image.setRGB(x, y, pixel);
                     }
                 }
             }
+            //         int pixel = image.getRGB(x, y);
+            //         int r = 255; // Red
+            //         int g = (pixel >> 8) & 0xFF;
+            //         int b = pixel & 0xFF;
+            //         image.setRGB(x, y, new Color(r, g, b).getRGB());
+
                         // Change every pixel to red for testing
 
             // // testing
